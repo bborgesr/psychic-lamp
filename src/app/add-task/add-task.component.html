@@ -1,0 +1,25 @@
+<form
+  [formGroup]="addTaskForm"
+  (ngSubmit)="onSubmit(addTaskForm)"
+  class="addTaskForm"
+>
+  <input
+    formControlName="task"
+    placeholder="Task name"
+    class="form-control task"
+    required
+  />
+  <em *ngIf="!validateTask() && addTaskForm.controls.task.errors.required"
+    >Required</em
+  >
+  <br />
+  <input
+    formControlName="done"
+    class="form-check-input done"
+    name="done"
+    type="checkbox"
+  />
+  <label for="done" class="form-check-label"> Done</label>
+  <br />
+  <button type="submit" class="btn btn-primary add-task">Add task</button>
+</form>

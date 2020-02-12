@@ -1,0 +1,12 @@
+.addTaskForm {
+  margin: 0 auto;
+  width: 500px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+em {
+  float: right;
+  color: #e05c65;
+  padding-left: 10px;
+}

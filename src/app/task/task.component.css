@@ -1,0 +1,30 @@
+ul {
+  margin: 0 auto;
+  width: 700px;
+}
+
+.container {
+  margin: 10px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  padding: 0 10px;
+  align-items: center;
+  background-color: aliceblue;
+}
+
+.task p {
+  margin-top: 12px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.buttons .btn {
+  margin: 0 10px;
+}
