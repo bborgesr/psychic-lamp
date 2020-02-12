@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { TaskService } from "../task.service";
-import { ITask } from "../task.model";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+
+import { ITask } from "../models/task";
+import { AppState } from "../models/app-state";
+import * as taskActions from "../actions/task.actions";
 
 @Component({
   selector: "app-task",
@@ -8,25 +12,32 @@ import { ITask } from "../task.model";
   styleUrls: ["./task.component.css"]
 })
 export class TaskComponent implements OnInit {
-  tasks: ITask[];
+  tasks$: any; //Observable<ITask[]>;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private store: Store<AppState>) {
+    this.tasks$ = this.store.select(state => state.tasks);
+  }
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasks();
+    this.getTasks();
   }
 
-  markAsDone(id) {
-    this.tasks = this.tasks.map(task => {
-      if (task.id === id) {
-        task.done = true;
-      }
-      return task;
-    });
+  getTasks() {
+    this.store.dispatch(new taskActions.LoadTasksAction());
   }
 
-  delete(id) {
-    this.taskService.deleteTask(id);
-    this.tasks = this.taskService.getTasks();
+  markAsDone(id: number) {
+    // this.tasks$ = this.tasks$.map(task => {
+    //   if (task.id === id) {
+    //     task.done = true;
+    //   }
+    //   return task;
+    // });
+  }
+
+  delete(id: number) {
+    this.store.dispatch(new taskActions.DeleteTaskAction(id));
+    // this.taskService.deleteTask(id);
+    // this.tasks$ = this.getTasks();
   }
 }

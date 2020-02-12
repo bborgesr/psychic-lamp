@@ -1,7 +1,9 @@
 <ul>
-  <div class="container" *ngFor="let task of tasks">
+  <div class="container" *ngFor="let task of tasks$ | async">
     <div class="task">
-      <a [class.done]="task.done" [routerLink]="['/task', task.id]">{{ task.name }}</a>
+      <a [class.done]="task.done" [routerLink]="['/task', task.id]">{{
+        task.name
+      }}</a>
       <div class="buttons">
         <button
           *ngIf="!task.done"

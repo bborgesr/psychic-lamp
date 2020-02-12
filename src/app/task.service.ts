@@ -1,14 +1,18 @@
 import { Injectable } from "@angular/core";
-import { ITask } from "./task.model";
+import { of } from "rxjs";
+import { Observable } from "rxjs";
+
+import { ITask } from "./models/task";
 
 @Injectable({
   providedIn: "root"
 })
 export class TaskService {
-  tasks: ITask[];
+  // tasks$: ITask[];
+  tasks$: any;
 
   constructor() {
-    this.tasks = [
+    this.tasks$ = [
       { id: 1, name: "HTML I", done: true },
       { id: 2, name: "CSS", done: false },
       { id: 3, name: "Responsive design", done: false },
@@ -18,20 +22,20 @@ export class TaskService {
     ];
   }
 
-  getTasks(): ITask[] {
-    return this.tasks;
+  getTasks(): any {
+    return of(this.tasks$);
   }
 
   addTask(task: ITask) {
-    this.tasks = [...this.tasks, task];
+    this.tasks$ = [...this.tasks$, task];
   }
 
   deleteTask(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
+    this.tasks$ = this.tasks$.filter(task => task.id !== id);
   }
 
   getNewId(): number {
-    const maxId = this.tasks.reduce((acc, val) => {
+    const maxId = this.tasks$.reduce((acc, val) => {
       return Math.max(acc, val.id);
     }, 0);
     return maxId + 1;
