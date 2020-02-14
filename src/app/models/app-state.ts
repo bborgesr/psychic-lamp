@@ -1,3 +1,5 @@
+import { ITask } from "./task";
+
 export interface AppState {
-  tasks: any;
+  tasks: ITask[];
 }

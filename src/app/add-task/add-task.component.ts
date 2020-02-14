@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { TaskService } from "../task.service";
+import { ITask } from "../models/task";
 
 @Component({
   selector: "app-add-task",
@@ -27,11 +28,12 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    this.taskService.addTask({
-      id: this.taskService.getNewId(),
+    const task: ITask = {
+      id: null,
       name: form.value.task,
       done: form.value.done
-    });
+    };
+    this.taskService.add(task);
     this.router.navigate([""]);
   }
 
