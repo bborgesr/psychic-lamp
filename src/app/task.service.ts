@@ -32,6 +32,11 @@ export class TaskService {
 
   deleteTask(id: number) {
     this.tasks$ = this.tasks$.filter(task => task.id !== id);
+    return of(true);
+  }
+
+  deleteTask2() {
+    return of(true);
   }
 
   getNewId(): number {
