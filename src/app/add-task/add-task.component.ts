@@ -14,16 +14,19 @@ export class AddTaskComponent implements OnInit {
   addTaskForm: FormGroup;
   private task: FormControl;
   private done: FormControl;
+  private description: FormControl;
 
   constructor(private router: Router, private taskService: TaskService) {}
 
   ngOnInit() {
     this.task = new FormControl("", [Validators.required]);
     this.done = new FormControl(false);
+    this.description = new FormControl("", [Validators.required]);
 
     this.addTaskForm = new FormGroup({
       task: this.task,
-      done: this.done
+      done: this.done,
+      description: this.description
     });
   }
 
@@ -31,7 +34,8 @@ export class AddTaskComponent implements OnInit {
     const task: ITask = {
       id: null,
       name: form.value.task,
-      done: form.value.done
+      done: form.value.done,
+      description: form.value.description
     };
     this.taskService.add(task);
     this.router.navigate([""]);

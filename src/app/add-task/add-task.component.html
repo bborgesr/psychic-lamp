@@ -12,6 +12,12 @@
   <em *ngIf="!validateTask() && addTaskForm.controls.task.errors.required"
     >Required</em
   >
+  <textarea
+    formControlName="description"
+    placeholder="Description"
+    class="form-control description"
+    required
+  ></textarea>
   <br />
   <input
     formControlName="done"
