@@ -1,0 +1,9 @@
+<div class="jumbotron" *ngIf="!(loading$ | async)">
+  <h1>Task: {{ (task$ | async).name }}</h1>
+  <p *ngIf="(task$ | async).done">
+    This task is done!
+  </p>
+  <p *ngIf="!(task$ | async).done">
+    This task is NOT done yet.
+  </p>
+</div>

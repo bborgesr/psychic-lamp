@@ -15,13 +15,15 @@ import { AddTaskComponent } from "./add-task/add-task.component";
 import { TaskService } from "./task.service";
 import { AppStoreModule } from "./store/app-store.module";
 import { InMemTaskService } from "./inMemTaskService";
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TaskComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
